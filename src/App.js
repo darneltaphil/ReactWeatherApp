@@ -5,8 +5,7 @@ import Header from './components/Header'
 import Recent from './components/Recent'
 import Footer from './components/Footer'
 import Weatherdisplay from './components/Weatherdisplay'
-import axios from 'axios'; //USING AXIOS TO FETCH BLOG POST WITH AN API
-
+import axios from 'axios'
 import './components/style.css'
 
  class App extends React.Component {
@@ -54,7 +53,7 @@ import './components/style.css'
 				//Control Response
 				console.log(response)
 				if(response.data.success===false){
-					swal.fire("Invalid Request", "Your API is either temporarily unavailable or your location is invalid")
+					swal.fire("Invalid Request", "your location <b>"+theTownLocation+"</b> is invalid")
 					this.setState({
 					//GetWeatherJson: response.data,
 					value:"Accra",             
