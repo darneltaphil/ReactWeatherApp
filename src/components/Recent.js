@@ -2,15 +2,7 @@ import React, {useState} from 'react';
 
 function Recent(props) {
 	const displayWeather=props.recentList;
-console.log (displayWeather)
-//	constructor(props){
-//		super(props);
-//		this.state={
-//			recentSearchesList: this.props.recentList
-//		}
-//	}
-
-	
+	//console.log (displayWeather)
 		return (
 	         
 			<main className="main-content">

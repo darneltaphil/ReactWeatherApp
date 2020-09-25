@@ -14,7 +14,7 @@ function Header() {
 						</div>
 					</a> 
 
-					<div className="btn btn-info main-navigation">
+					<div className=" main-navigation">
 					 Login
 					</div> 
 

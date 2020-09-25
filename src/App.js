@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import swal from 'sweetalert2';
 // import Login from './Login'
 import Header from './components/Header'
 import Recent from './components/Recent'
@@ -8,7 +8,6 @@ import Weatherdisplay from './components/Weatherdisplay'
 import axios from 'axios'; //USING AXIOS TO FETCH BLOG POST WITH AN API
 
 import './components/style.css'
-//import axios from 'axios';
 
  class App extends React.Component {
 	 
@@ -22,7 +21,6 @@ import './components/style.css'
 		isLoading: true,
 
 	};
-   	this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 	this.getWeather = this.getWeather.bind(this)
 	this.recordRecentSearch	= this.recordRecentSearch.bind(this) 
@@ -32,7 +30,6 @@ import './components/style.css'
 		setTimeout(() => {
 				this.setState({
 					isLoading: false,
-					
 				})
 			}, 2500)
 		this.getWeather()
@@ -52,14 +49,12 @@ import './components/style.css'
 	 //Other Methods
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value=='')||(this.state.value==undefined)?"Accra":this.state.value
-			//console.log("Getting Weather "+ theTownLocation);
-			//console.log("http://api.weatherstack.com/current?access_key=9471ebe8de3a20930d66bc948dc82164&query="+theTownLocation);
-			axios.get("http://api.weatherstack.com/current?access_key=837e00581a14b54b44fcb5f46b8d591b&query="+theTownLocation)
+			axios.get("/getweather/"+theTownLocation)
 			.then(response => {
 				//Control Response
 				console.log(response)
 				if(response.data.success===false){
-					alert("Invalid Request: Check your Location... Loading Default Location : Accra/Ghana")
+					swal.fire("Invalid Request", "Your API is either temporarily unavailable or your location is invalid")
 					this.setState({
 					//GetWeatherJson: response.data,
 					value:"Accra",             
@@ -75,17 +70,13 @@ import './components/style.css'
 			})
 	};
 	
- 	handleChange=(event)=> {   this.setState({value: event.target.value});  }
 	
   	handleSubmit=(event)=> {
 		event.preventDefault();
 		const FormLocation=event.target[0].value
-		//alert('I am Still in App: ' + FormLocation);
-		//LocalStorage.setItem('City',FormLocation)
 		this.setState({value:FormLocation })
-		//console.log("I am in App "+ this.target[0].value)
   }
-	
+	//control the number of recent items saved
 	recordRecentSearch = () =>{
 		console.log(this.state.recentSearch)
 		if ((this.state.recentSearch.length<5) && (this.state.recentSearch.indexOf(this.state.value)!==-1)){
@@ -111,8 +102,11 @@ render(){
                   </form>
                </div>
            </div>       						
-		{this.state.isLoading ? <center><h1>Loading...</h1></center> :<><Weatherdisplay getWeatherLocation={this.state.getWeatherLocation}
-		getWeatherCurrent={this.state.getWeatherCurrent}/></>}
+		{this.state.isLoading ? 
+		<center><h1>Loading...</h1></center> :
+		<Weatherdisplay getWeatherLocation={this.state.getWeatherLocation}
+		getWeatherCurrent={this.state.getWeatherCurrent}/>
+		}
 		<Recent recentList={this.state.recentSearch}/>
         <Footer />
 
