@@ -42,8 +42,7 @@ import './components/style.css'
 		this.getWeather()
 		this.recordRecentSearch()
 	}
-	if (this.state.recentSearch !== prevState.recentSearch) {
-}}
+}
 	
 	 //Other Methods
 	getWeather = ()=>{
@@ -55,7 +54,6 @@ import './components/style.css'
 				if(response.data.success===false){
 					swal.fire("Invalid Request", "your location <b>"+theTownLocation+"</b> is invalid")
 					this.setState({
-					//GetWeatherJson: response.data,
 					value:"Accra",             
 					}) 
 
@@ -89,7 +87,6 @@ import './components/style.css'
 	
 
 render(){
-	
     return (
 		<>
 		<Header/>
