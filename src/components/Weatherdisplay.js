@@ -18,7 +18,7 @@ export default class Router extends React.Component {
                         <div className="degree">
                             <div className="num">{this.props.getWeatherCurrent.temperature}<sup>o</sup>C</div>
                             <div className="forecast-icon">
-                                <img src="./images/icons/icon-1.svg" alt="" width="90"/>
+                                <img src="images/icons/icon-1.svg" alt="" width="90"/>
                             </div>	
                         </div>
                     </div>
@@ -33,7 +33,7 @@ export default class Router extends React.Component {
                         <div className="forecast-icon">
                             <img src="images/icons/icon-3.svg" alt="" width="48"/>
                         </div>
-                        <p className="detail-title">Rainfall: <img to="./components/images/icon-umberella.png" alt=""/> {this.props.getWeatherCurrent.precip}</p>
+                        <p className="detail-title">Rainfall: <img src="images/icon-umberella.png" alt=""/> {this.props.getWeatherCurrent.precip}</p>
                         <p className="detail-title">Wind Speed: <img src="images/icon-wind.png" alt=""/>{this.props.getWeatherCurrent.wind_speed}km/h</p>
                         <p className="detail-title">Wind Rirection: <img src="images/icon-compass.png" alt=""/>{this.props.getWeatherCurrent.wind_dir}</p>
                         <p className="detail-title">Pressure: <img src="images/icon-compass.png" alt=""/>{this.props.getWeatherCurrent.pressure}</p>

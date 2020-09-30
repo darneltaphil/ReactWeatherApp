@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import swal from 'sweetalert2';
 // import Login from './Login'
 import Header from './components/Header'
@@ -47,7 +48,7 @@ import './components/style.css'
 	 //Other Methods
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value=='')||(this.state.value==undefined)?"Accra":this.state.value
-			axios.get("/getweather/"+theTownLocation)
+			axios.get("getWeather/"+theTownLocation)
 			.then(response => {
 				//Control Response
 				console.log(response)
@@ -88,7 +89,9 @@ import './components/style.css'
 
 render(){
     return (
-		<>
+		<Router>                
+	                
+		
 		<Header/>
 		<div className="hero form-bg"  >
                <div className="container">
@@ -100,13 +103,16 @@ render(){
            </div>       						
 		{this.state.isLoading ? 
 		<center><h1>Loading...</h1></center> :
-		<Weatherdisplay getWeatherLocation={this.state.getWeatherLocation}
-		getWeatherCurrent={this.state.getWeatherCurrent}/>
+		<Route exact path="/" component={()=><Weatherdisplay 
+				getWeatherLocation={this.state.getWeatherLocation}
+				getWeatherCurrent={this.state.getWeatherCurrent}/> 
+			 }/> 
 		}
 		<Recent recentList={this.state.recentSearch}/>
         <Footer />
 
-		</>
+		
+		</Router>  
     )
   }
 }

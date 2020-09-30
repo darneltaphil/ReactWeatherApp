@@ -13,10 +13,10 @@ function Recent(props) {
 						<div className="row">
 		
           {displayWeather.map(item => (
-				<div className="col-md-3 col-sm-6">
+				<div className="col-md-3 col-sm-6"  key={item}>
 					<div className="live-camera">
 						<figure className="live-camera-cover"><img src="images/live-camera-1.jpg" alt=""/></figure>
-						<h3 className="location" key={item}>{item}</h3>
+						<h3 className="location">{item}</h3>
 						<small className="date"></small>
 					</div>
 				</div>
