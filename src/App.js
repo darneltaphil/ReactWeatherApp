@@ -21,17 +21,17 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
 		isLoading: true,
 
 	};
-    this.handleSubmit = this.handleSubmit.bind(this);
-	this.getWeather = this.getWeather.bind(this)
-	this.recordRecentSearch	= this.recordRecentSearch.bind(this) 
+    // this.handleSubmit = this.handleSubmit.bind(this);
+	//this.getWeather = this.getWeather.bind(this)
+	// this.recordRecentSearch	= this.recordRecentSearch.bind(this) 
   }
 	 //Lifecycle Methods
 	 componentDidMount() {
 		setTimeout(() => {
-				this.setState({
-					isLoading: false,
-				})
-			}, 2500)
+			this.setState({
+				isLoading: false,
+			})
+		}, 2500)
 		this.getWeather()
    		//console.log("componentDidMount WhichLocation " + this.state.value)
 }
@@ -49,6 +49,7 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value==='')||(this.state.value===undefined)?"Accra":this.state.value
 			axios.get(baseUrl+"getWeather/"+theTownLocation)
+			// axios.get("/"+theTownLocation)
 			.then(response => {
 				//Control Response
 				console.log(response)
@@ -57,8 +58,8 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
 					this.setState({
 					value:"Accra",             
 					}) 
-
 				}else{
+			
 				this.setState({
 					//GetWeatherJson: response.data,
 					getWeatherLocation: response.data.location,
@@ -76,22 +77,18 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
   }
 	//control the number of recent items saved
 	recordRecentSearch = () =>{
-		console.log(this.state.recentSearch)
+		//console.log(this.state.recentSearch)
 		if ((this.state.recentSearch.length<5) && (this.state.recentSearch.indexOf(this.state.value)!==-1)){
 
 		this.setState({
 		  recentSearch: [...this.state.recentSearch, this.state.value],
 			});
 		}
-		
   	}
-	
 
 render(){
     return (
 		<Router>                
-	                
-		
 		<Header/>
 		<div className="hero form-bg"  >
                <div className="container">
