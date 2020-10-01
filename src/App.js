@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import swal from 'sweetalert2';
 // import Login from './Login'
@@ -47,7 +47,7 @@ import './components/style.css'
 	
 	 //Other Methods
 	getWeather = ()=>{
-			const theTownLocation = (this.state.value=='')||(this.state.value==undefined)?"Accra":this.state.value
+			const theTownLocation = (this.state.value==='')||(this.state.value===undefined)?"Accra":this.state.value
 			axios.get("getWeather/"+theTownLocation)
 			.then(response => {
 				//Control Response
