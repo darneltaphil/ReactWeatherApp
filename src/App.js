@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import Weatherdisplay from './components/Weatherdisplay'
 import axios from 'axios'
 import './components/style.css'
-
+const baseUrl="https://weather-backend-29.herokuapp.com/"
  class App extends React.Component {
 	 
 	 constructor() {
@@ -48,7 +48,7 @@ import './components/style.css'
 	 //Other Methods
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value==='')||(this.state.value===undefined)?"Accra":this.state.value
-			axios.get("getWeather/"+theTownLocation)
+			axios.get(baseUrl+"getWeather/"+theTownLocation)
 			.then(response => {
 				//Control Response
 				console.log(response)
