@@ -11,7 +11,7 @@ localStorage.setItem('user','1254wperoeorjves5trrvtaert');
 		<div className="card-header h5 text-white bg-info d-flex justify-content-center">Pre-MEST ReactJS Blog</div>
 	<div className="login-form p-4">
 		<div className="alert-warning p-3"> Please Use Any <strong>Username</strong> and <strong>Password</strong></div>
-    <form action="/" method="get" onSubmit={handleSubmit} >
+    <form action="/loginprocess" method="get" onSubmit={handleSubmit} >
         <h2 className="text-center">Log in</h2>       
         <div className="form-group">
             <input type="text" id="un"  class="form-control" placeholder="Username" required="required"/>

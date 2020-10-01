@@ -15,7 +15,7 @@ function Recent(props) {
           {displayWeather.map(item => (
 				<div className="col-md-3 col-sm-6"  key={item}>
 					<div className="live-camera">
-						<figure className="live-camera-cover"><img src="images/live-camera-1.jpg" alt=""/></figure>
+						<figure className="live-camera-cover"></figure>
 						<h3 className="location">{item}</h3>
 						<small className="date"></small>
 					</div>

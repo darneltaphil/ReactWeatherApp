@@ -50,7 +50,7 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
 	 //Other Methods
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value==='')||(this.state.value===undefined)?"Accra":this.state.value
-			axios.get(baseUrlgot+theTownLocation)
+			axios.get(baseUrl+theTownLocation)
 			// axios.get("/"+theTownLocation)
 			.then(response => {
 				//Control Response
