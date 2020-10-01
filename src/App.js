@@ -9,7 +9,7 @@ import Weatherdisplay from './components/Weatherdisplay'
 import axios from 'axios'
 import './components/style.css'
 
-const baseUrl="https://weather-backend-29.herokuapp.com/"
+//const baseUrl="https://weather-backend-29.herokuapp.com/"
 
  class App extends React.Component {
 	 
@@ -20,7 +20,6 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
 		getWeatherLocation: [],
 		getWeatherCurrent: [],
 		recentSearch:["Accra"],
-		isLoading: true,
 
 	};
     // this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,11 +28,6 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
   }
 	 //Lifecycle Methods
 	 componentDidMount() {
-		setTimeout(() => {
-			this.setState({
-				isLoading: false,
-			})
-		}, 2500)
 		this.getWeather()
    		//console.log("componentDidMount WhichLocation " + this.state.value)
 }
@@ -50,12 +44,11 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
 	 //Other Methods
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value==='')||(this.state.value===undefined)?"Accra":this.state.value
-			axios.get(baseUrl+theTownLocation)
-			// axios.get("/"+theTownLocation)
+			//axios.get(baseUrl+theTownLocation)
+			 axios.get("/getWeather/"+theTownLocation)
 			.then(response => {
 				//Control Response
 				console.log(response)
-				console.log(process.env.baseUrl+theTownLocation)
 				if(response.data.success===false){
 					swal.fire("Invalid Request", "your location <b>"+theTownLocation+"</b> is invalid")
 					this.setState({
@@ -100,13 +93,12 @@ render(){
                   </form>
                </div>
            </div>       						
-		{this.state.isLoading ? 
-		<center><h1>Loading...</h1></center> :
+		
 		<Route exact path="/" component={()=><Weatherdisplay 
 				getWeatherLocation={this.state.getWeatherLocation}
 				getWeatherCurrent={this.state.getWeatherCurrent}/> 
 			 }/> 
-		}
+		
 		<Recent recentList={this.state.recentSearch}/>
         <Footer />
 		</Router>  
