@@ -8,7 +8,9 @@ import Footer from './components/Footer'
 import Weatherdisplay from './components/Weatherdisplay'
 import axios from 'axios'
 import './components/style.css'
+
 const baseUrl="https://weather-backend-29.herokuapp.com/"
+
  class App extends React.Component {
 	 
 	 constructor() {
@@ -48,11 +50,12 @@ const baseUrl="https://weather-backend-29.herokuapp.com/"
 	 //Other Methods
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value==='')||(this.state.value===undefined)?"Accra":this.state.value
-			axios.get(baseUrl+"/"+theTownLocation)
+			axios.get(baseUrlgot+theTownLocation)
 			// axios.get("/"+theTownLocation)
 			.then(response => {
 				//Control Response
 				console.log(response)
+				console.log(process.env.baseUrl+theTownLocation)
 				if(response.data.success===false){
 					swal.fire("Invalid Request", "your location <b>"+theTownLocation+"</b> is invalid")
 					this.setState({
