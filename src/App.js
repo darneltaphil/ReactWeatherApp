@@ -41,11 +41,12 @@ import './components/style.css'
 	}
 }
 	
+
 	 //Other Methods
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value==='')||(this.state.value===undefined)?"Accra":this.state.value
 			//axios.get(baseUrl+theTownLocation)
-			 axios.get("/getWeather/"+theTownLocation)
+			axios.get("/getWeather/"+theTownLocation)  
 			.then(response => {
 				//Control Response
 				console.log(response)
