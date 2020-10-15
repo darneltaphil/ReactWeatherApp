@@ -2,7 +2,6 @@
   "name": "weather_app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://weather-backend-29.herokuapp.com",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
