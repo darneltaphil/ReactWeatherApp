@@ -9,7 +9,7 @@ import Weatherdisplay from './components/Weatherdisplay'
 import axios from 'axios'
 import './components/style.css'
 
-//const baseUrl="https://weather-backend-29.herokuapp.com/"
+const baseUrl="https://weather-backend-29.herokuapp.com/"
 
  class App extends React.Component {
 	 
@@ -22,20 +22,15 @@ import './components/style.css'
 		recentSearch:["Accra"],
 
 	};
-    // this.handleSubmit = this.handleSubmit.bind(this);
-	//this.getWeather = this.getWeather.bind(this)
-	// this.recordRecentSearch	= this.recordRecentSearch.bind(this) 
   }
 	 //Lifecycle Methods
 	 componentDidMount() {
 		this.getWeather()
-   		//console.log("componentDidMount WhichLocation " + this.state.value)
 }
 	 
 	 componentDidUpdate(prevProps, prevState) {
 	if (this.state.value !== prevState.value) {
 		this.setState({value:this.state.value })
-		//alert("I am in App State  changed new value  " + this.state.value)
 		this.getWeather()
 		this.recordRecentSearch()
 	}
@@ -46,7 +41,7 @@ import './components/style.css'
 	getWeather = ()=>{
 			const theTownLocation = (this.state.value==='')||(this.state.value===undefined)?"Accra":this.state.value
 			//axios.get(baseUrl+theTownLocation)
-			axios.get("/getWeather/"+theTownLocation)  
+			axios.get(baseUrl+"/getWeather/"+theTownLocation)  
 			.then(response => {
 				//Control Response
 				console.log(response)
@@ -58,11 +53,9 @@ import './components/style.css'
 				}else{
 			
 				this.setState({
-					//GetWeatherJson: response.data,
 					getWeatherLocation: response.data.location,
 					getWeatherCurrent: response.data.current,                 
 				}) }
-			//console.log(this.state.GetWeatherLocation);
 			})
 	};
 	
@@ -74,7 +67,6 @@ import './components/style.css'
   }
 	//control the number of recent items saved
 	recordRecentSearch = () =>{
-		//console.log(this.state.recentSearch)
 		if ((this.state.recentSearch.length<5) && (this.state.recentSearch.indexOf(this.state.value)!==-1)){
 		this.setState({
 		  recentSearch: [...this.state.recentSearch, this.state.value],
